@@ -1,0 +1,130 @@
+#!/bin/bash
+
+home=$1
+user=$2
+pass=$3
+port=$4
+error=0
+data_file="/tmp/jboss_jvm_data_$port"
+
+#-------------------------------------------{ Get data from jboss jvm }-------------------------------------------------
+raw=$(
+    $home/jboss-bas-*/bin/jboss-cli.sh --controller=localhost:$port --user=$user --password=$pass -c '
+        /core-service=platform-mbean/type=memory:read-attribute(name=heap-memory-usage),
+        /core-service=platform-mbean/type=memory:read-attribute(name=non-heap-memory-usage),
+        /core-service=platform-mbean/type=garbage-collector/name=PS_MarkSweep:read-attribute(name=collection-time),
+        /core-service=platform-mbean/type=garbage-collector/name=PS_MarkSweep:read-attribute(name=collection-count),
+        /core-service=platform-mbean/type=garbage-collector/name=PS_Scavenge:read-attribute(name=collection-time),
+        /core-service=platform-mbean/type=garbage-collector/name=PS_Scavenge:read-attribute(name=collection-count),
+        /core-service=platform-mbean/type=threading:read-attribute(name=daemon-thread-count),
+        /core-service=platform-mbean/type=threading:read-attribute(name=peak-thread-count),
+        /core-service=platform-mbean/type=threading:read-attribute(name=thread-count),
+        /core-service=platform-mbean/type=threading:read-attribute(name=total-started-thread-count),
+        /core-service=platform-mbean/type=class-loading:read-attribute(name=loaded-class-count),
+        /core-service=platform-mbean/type=class-loading:read-attribute(name=unloaded-class-count),
+        /core-service=platform-mbean/type=class-loading:read-attribute(name=total-loaded-class-count),
+        /subsystem=datasources/data-source=DataaccessDS/statistics=pool:read-attribute(name=AvailableCount),
+        /subsystem=datasources/data-source=DataaccessDS/statistics=pool:read-attribute(name=InUseCount),
+        /subsystem=datasources/data-source=DataaccessDS/statistics=pool:read-attribute(name=MaxWaitCount),
+        /core-service=platform-mbean/type=runtime:read-attribute(name=uptime),
+        /deployment=application.war/subsystem=undertow:read-attribute(name=active-sessions),
+        /deployment=application.war/subsystem=undertow:read-attribute(name=sessions-created),
+        /core-service=platform-mbean/type=memory-pool/name=Code_Cache:read-attribute(name=usage),
+        /core-service=platform-mbean/type=memory-pool/name=PS_Old_Gen:read-attribute(name=usage)
+    ' 2>/dev/null
+); error=$(($error+$?)); raw=( ${raw//[a-Z\{\}\"\=\>\,]/} )
+
+#-----------------------------------{ Save data to file in an indexed array form }--------------------------------------
+cat > "$data_file" << EOF
+#!/bin/bash
+declare -A data
+
+data['heap init']=${raw[0]}
+data['heap used']=${raw[1]}
+data['heap committed']=${raw[2]}
+data['heap max']=${raw[3]}
+
+data['non heap init']=${raw[4]}
+data['non heap used']=${raw[5]}
+data['non heap committed']=${raw[6]}
+data['non heap max']=${raw[7]}
+
+data['gc marksweep collection-time']=${raw[8]}
+data['gc marksweep collection-count']=${raw[9]}
+data['gc scavenge collection-time']=${raw[10]}
+data['gc scavenge collection-count']=${raw[11]}
+
+data['thread count daemon']=${raw[12]}
+data['thread count peak']=${raw[13]}
+data['thread count']=${raw[14]}
+data['thread count total started']=${raw[15]}
+
+data['class count loaded']=${raw[16]}
+data['class count unloaded']=${raw[17]}
+data['class count total loaded']=${raw[18]}
+
+data['data source available count']=${raw[19]}
+data['data source in use count']=${raw[20]}
+data['data source max wait count']=${raw[21]}
+
+data['jvm uptime']=${raw[22]}
+
+data['application active sessions']=${raw[23]}
+data['application sessions created']=${raw[24]}
+
+data['memory-pool code_cache init']=${raw[25]}
+data['memory-pool code_cache used']=${raw[26]}
+data['memory-pool code_cache committed']=${raw[27]}
+data['memory-pool code_cache max']=${raw[28]}
+
+data['memory-pool ps_old_gen init']=${raw[29]}
+data['memory-pool ps_old_gen used']=${raw[30]}
+data['memory-pool ps_old_gen committed']=${raw[31]}
+data['memory-pool ps_old_gen max']=${raw[32]}
+
+echo \${data[\${1,,}]}
+EOF
+
+error=$(($error+$?))
+chmod +x "$data_file"
+echo $error
+
+#-------------------------------------------{ other jvm parameters }----------------------------------------------------
+zabbix
+bWFzdGVyMTFrZXk
+for ((i=0; i<${#raw[*]}; i++)); { echo "$i: ${raw[$i]}"; }
+
+home=/var/lib/jboss/rebudget
+user=zabbix
+pass=bWFzdGVyMTFrZXk
+port=9990
+
+/core-service=platform-mbean/type=memory:read-attribute(name=non-heap-memory-usage)
+
+/core-service=platform-mbean/type=garbage-collector/name=PS_MarkSweep:read-attribute(name=collection-time)
+/core-service=platform-mbean/type=garbage-collector/name=PS_MarkSweep:read-attribute(name=collection-count)
+/core-service=platform-mbean/type=garbage-collector/name=PS_Scavenge:read-attribute(name=collection-time)
+/core-service=platform-mbean/type=garbage-collector/name=PS_Scavenge:read-attribute(name=collection-count)
+
+/core-service=platform-mbean/type=class-loading:read-attribute(name=loaded-class-count)
+/core-service=platform-mbean/type=class-loading:read-attribute(name=unloaded-class-count)
+/core-service=platform-mbean/type=class-loading:read-attribute(name=total-loaded-class-count)
+
+/core-service=platform-mbean/type=memory-pool/name=Code_Cache:read-attribute(name=usage)
+/core-service=platform-mbean/type=memory-pool/name=PS_Old_Gen:read-attribute(name=usage)
+
+/core-service=platform-mbean/type=threading:read-attribute(name=daemon-thread-count)
+/core-service=platform-mbean/type=threading:read-attribute(name=peak-thread-count)
+/core-service=platform-mbean/type=threading:read-attribute(name=thread-count)
+/core-service=platform-mbean/type=threading:read-attribute(name=total-started-thread-count)
+
+#----------------------------------------------{ using curl\wget }------------------------------------------------------
+curl --digest 'http://zabbix:bWFzdGVyMTFrZXk@localhost:9990/management' --header "Content-Type: application/json" \
+-d '{"operation":"read-attribute","name":"non-heap-memory-usage","address":[{"core-service":"platform-mbean"},{"type":"memory"}]}'
+
+wget -qO- 'http://zabbix:bWFzdGVyMTFrZXk@localhost:9990/management' --header 'Content-Type: application/json' --post-data='{"operation":"read-attribute","name":"non-heap-memory-usage","address":[{"core-service":"platform-mbean"},{"type":"memory"}]}'
+
+
+
+
+
