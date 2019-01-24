@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.0</version>
-    <date>2019-01-24T13:58:16Z</date>
+    <date>2019-01-24T14:14:51Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -38,65 +38,6 @@
                 </application>
             </applications>
             <items>
-                <item>
-                    <name>JVM Data collector</name>
-                    <type>0</type>
-                    <snmp_community/>
-                    <snmp_oid/>
-                    <key>system.run[/etc/zabbix/scripts/jboss_jvm_data {$MANAGMENT_USER} {$MANAGMENT_PASS} {$MANAGMENT_PORT} {$JBOSS_HOME} {$WGET_OR_CLI}]</key>
-                    <delay>1m</delay>
-                    <history>10d</history>
-                    <trends>30d</trends>
-                    <status>0</status>
-                    <value_type>3</value_type>
-                    <allowed_hosts/>
-                    <units/>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <description/>
-                    <inventory_link>0</inventory_link>
-                    <applications>
-                        <application>
-                            <name>jvm</name>
-                        </application>
-                    </applications>
-                    <valuemap/>
-                    <logtimefmt/>
-                    <preprocessing/>
-                    <jmx_endpoint/>
-                    <timeout>3s</timeout>
-                    <url/>
-                    <query_fields/>
-                    <posts/>
-                    <status_codes>200</status_codes>
-                    <follow_redirects>1</follow_redirects>
-                    <post_type>0</post_type>
-                    <http_proxy/>
-                    <headers/>
-                    <retrieve_mode>0</retrieve_mode>
-                    <request_method>0</request_method>
-                    <output_format>0</output_format>
-                    <allow_traps>0</allow_traps>
-                    <ssl_cert_file/>
-                    <ssl_key_file/>
-                    <ssl_key_password/>
-                    <verify_peer>0</verify_peer>
-                    <verify_host>0</verify_host>
-                    <master_item/>
-                </item>
                 <item>
                     <name>Application active sessions</name>
                     <type>0</type>
@@ -2084,10 +2025,73 @@
                     <verify_host>0</verify_host>
                     <master_item/>
                 </item>
+                <item>
+                    <name>JVM Data collector</name>
+                    <type>0</type>
+                    <snmp_community/>
+                    <snmp_oid/>
+                    <key>system.run[{$DATA_COLLECTOR} {$MANAGMENT_USER} {$MANAGMENT_PASS} {$MANAGMENT_PORT} {$JBOSS_HOME} {$WGET_OR_CLI}]</key>
+                    <delay>1m</delay>
+                    <history>10d</history>
+                    <trends>30d</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>jvm</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                    <preprocessing/>
+                    <jmx_endpoint/>
+                    <timeout>3s</timeout>
+                    <url/>
+                    <query_fields/>
+                    <posts/>
+                    <status_codes>200</status_codes>
+                    <follow_redirects>1</follow_redirects>
+                    <post_type>0</post_type>
+                    <http_proxy/>
+                    <headers/>
+                    <retrieve_mode>0</retrieve_mode>
+                    <request_method>0</request_method>
+                    <output_format>0</output_format>
+                    <allow_traps>0</allow_traps>
+                    <ssl_cert_file/>
+                    <ssl_key_file/>
+                    <ssl_key_password/>
+                    <verify_peer>0</verify_peer>
+                    <verify_host>0</verify_host>
+                    <master_item/>
+                </item>
             </items>
             <discovery_rules/>
             <httptests/>
             <macros>
+                <macro>
+                    <macro>{$DATA_COLLECTOR}</macro>
+                    <value>/etc/zabbix/scripts/jboss_jvm_data</value>
+                </macro>
                 <macro>
                     <macro>{$JBOSS_HOME}</macro>
                     <value>/var/lib/jboss/rebudget</value>
@@ -2169,7 +2173,7 @@
             <tags/>
         </trigger>
         <trigger>
-            <expression>{Template jboss jvm data:system.run[/etc/zabbix/scripts/jboss_jvm_data {$MANAGMENT_USER} {$MANAGMENT_PASS} {$MANAGMENT_PORT} {$JBOSS_HOME} {$WGET_OR_CLI}].last(#3)}&gt;0</expression>
+            <expression>{Template jboss jvm data:system.run[{$DATA_COLLECTOR} {$MANAGMENT_USER} {$MANAGMENT_PASS} {$MANAGMENT_PORT} {$JBOSS_HOME} {$WGET_OR_CLI}].last(#3)}&gt;0</expression>
             <recovery_mode>0</recovery_mode>
             <recovery_expression/>
             <name>JVM data collector error</name>
