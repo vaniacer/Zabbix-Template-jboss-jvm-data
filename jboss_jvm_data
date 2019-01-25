@@ -91,8 +91,8 @@ raw=( ${raw//[a-Z\{\}\:\"\=\>\,]/} )
 #----------------------------------------------{ Make some calculations }-----------------------------------------------
 . $file; printf -v time '%(%s)T'
 
-gc_scavenge_time=${data['gc scavenge time']:-0}
-gc_marksweep_time=${data['gc marksweep time']:-0}
+gc_scavenge_time=${data['gc scavenge time']:-$time}
+gc_marksweep_time=${data['gc marksweep time']:-$time}
 gc_scavenge_interval=${data['gc scavenge collection-interval']}
 gc_marksweep_interval=${data['gc marksweep collection-interval']}
 
