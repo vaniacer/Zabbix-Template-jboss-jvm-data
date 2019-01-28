@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.0</version>
-    <date>2019-01-25T13:33:23Z</date>
+    <date>2019-01-28T12:10:34Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -2155,7 +2155,7 @@
                     <snmp_community/>
                     <snmp_oid/>
                     <key>system.run[{$DATA_COLLECTOR} {$MANAGMENT_USER} {$MANAGMENT_PASS} {$MANAGMENT_PORT} {$JBOSS_HOME} {$WGET_OR_CLI}]</key>
-                    <delay>1m</delay>
+                    <delay>45s</delay>
                     <history>10d</history>
                     <trends>30d</trends>
                     <status>0</status>
@@ -2531,7 +2531,7 @@
             </graph_items>
         </graph>
         <graph>
-            <name>JVM Garbage colection time</name>
+            <name>JVM GC MarkSweep colection time</name>
             <width>900</width>
             <height>200</height>
             <yaxismin>0.0000</yaxismin>
@@ -2551,7 +2551,7 @@
                 <graph_item>
                     <sortorder>0</sortorder>
                     <drawtype>5</drawtype>
-                    <color>199C0D</color>
+                    <color>2774A4</color>
                     <yaxisside>0</yaxisside>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
@@ -2562,6 +2562,50 @@
                 </graph_item>
                 <graph_item>
                     <sortorder>1</sortorder>
+                    <drawtype>0</drawtype>
+                    <color>F7941D</color>
+                    <yaxisside>0</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Template jboss jvm data</host>
+                        <key>system.run[/tmp/jboss_jvm_data_{$MANAGMENT_PORT} 'GC MarkSweep collection-interval']</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>2</sortorder>
+                    <drawtype>0</drawtype>
+                    <color>8BC34A</color>
+                    <yaxisside>1</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Template jboss jvm data</host>
+                        <key>system.run[/tmp/jboss_jvm_data_{$MANAGMENT_PORT} 'GC MarkSweep collection-count']</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+        <graph>
+            <name>JVM GC Scavenge colection time</name>
+            <width>900</width>
+            <height>200</height>
+            <yaxismin>0.0000</yaxismin>
+            <yaxismax>100.0000</yaxismax>
+            <show_work_period>1</show_work_period>
+            <show_triggers>1</show_triggers>
+            <type>0</type>
+            <show_legend>1</show_legend>
+            <show_3d>0</show_3d>
+            <percent_left>0.0000</percent_left>
+            <percent_right>0.0000</percent_right>
+            <ymin_type_1>0</ymin_type_1>
+            <ymax_type_1>0</ymax_type_1>
+            <ymin_item_1>0</ymin_item_1>
+            <ymax_item_1>0</ymax_item_1>
+            <graph_items>
+                <graph_item>
+                    <sortorder>0</sortorder>
                     <drawtype>5</drawtype>
                     <color>2774A4</color>
                     <yaxisside>0</yaxisside>
@@ -2573,19 +2617,7 @@
                     </item>
                 </graph_item>
                 <graph_item>
-                    <sortorder>2</sortorder>
-                    <drawtype>0</drawtype>
-                    <color>FF0000</color>
-                    <yaxisside>0</yaxisside>
-                    <calc_fnc>2</calc_fnc>
-                    <type>0</type>
-                    <item>
-                        <host>Template jboss jvm data</host>
-                        <key>system.run[/tmp/jboss_jvm_data_{$MANAGMENT_PORT} 'GC MarkSweep collection-interval']</key>
-                    </item>
-                </graph_item>
-                <graph_item>
-                    <sortorder>3</sortorder>
+                    <sortorder>1</sortorder>
                     <drawtype>0</drawtype>
                     <color>F7941D</color>
                     <yaxisside>0</yaxisside>
@@ -2594,6 +2626,18 @@
                     <item>
                         <host>Template jboss jvm data</host>
                         <key>system.run[/tmp/jboss_jvm_data_{$MANAGMENT_PORT} 'GC Scavenge collection-interval']</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>2</sortorder>
+                    <drawtype>0</drawtype>
+                    <color>8BC34A</color>
+                    <yaxisside>1</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Template jboss jvm data</host>
+                        <key>system.run[/tmp/jboss_jvm_data_{$MANAGMENT_PORT} 'GC Scavenge collection-count']</key>
                     </item>
                 </graph_item>
             </graph_items>
@@ -2662,6 +2706,18 @@
                     <item>
                         <host>Template jboss jvm data</host>
                         <key>system.run[/tmp/jboss_jvm_data_{$MANAGMENT_PORT} 'Heap used']</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>4</sortorder>
+                    <drawtype>0</drawtype>
+                    <color>00BFFF</color>
+                    <yaxisside>1</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Template jboss jvm data</host>
+                        <key>system.run[/tmp/jboss_jvm_data_{$MANAGMENT_PORT} 'GC Scavenge collection-interval']</key>
                     </item>
                 </graph_item>
             </graph_items>
