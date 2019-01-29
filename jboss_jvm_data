@@ -89,25 +89,26 @@ esac
 raw=( ${raw//[a-Z\{\}\:\"\=\>\,]/} )
 
 #----------------------------------------------{ Make some calculations }-----------------------------------------------
-. $file &> /dev/null; time=$(printf '%(%s)T')
+. $file &> /dev/null && {
+    time=$(printf '%(%s)T')
 
-gc_scavenge_time=${data['gc scavenge time']:-$time}
-gc_marksweep_time=${data['gc marksweep time']:-$time}
-gc_scavenge_interval=${data['gc scavenge collection-interval']}
-gc_marksweep_interval=${data['gc marksweep collection-interval']}
+    gc_scavenge_time=${data['gc scavenge time']:-$time}
+    gc_marksweep_time=${data['gc marksweep time']:-$time}
+    gc_scavenge_interval=${data['gc scavenge collection-interval']}
+    gc_marksweep_interval=${data['gc marksweep collection-interval']}
 
-scavenge_counts=$((${raw[11]}-${data['gc scavenge collection-count']}))
-[[ $scavenge_counts -gt 0 ]] && {
-    gc_scavenge_interval=$(( ($time-$gc_scavenge_time)/$scavenge_counts ))
-    gc_scavenge_time=$time
+    scavenge_counts=$((${raw[11]}-${data['gc scavenge collection-count']:-0}))
+    [[ $scavenge_counts -gt 0 ]] && {
+        gc_scavenge_interval=$(( ($time-$gc_scavenge_time)/$scavenge_counts ))
+        gc_scavenge_time=$time
+    }
+
+    marksweep_counts=$((${raw[9]}-${data['gc marksweep collection-count']:-0}))
+    [[ $marksweep_counts -gt 0 ]] && {
+        gc_marksweep_interval=$(( ($time-$gc_marksweep_time)/$marksweep_counts ))
+        gc_marksweep_time=$time
+    }
 }
-
-marksweep_counts=$((${raw[9]}-${data['gc marksweep collection-count']}))
-[[ $marksweep_counts -gt 0 ]] && {
-    gc_marksweep_interval=$(( ($time-$gc_marksweep_time)/$marksweep_counts ))
-    gc_marksweep_time=$time
-}
-
 #-----------------------------------{ Save data to file in an indexed array form }--------------------------------------
 cat > "$file" << EOF
 #!/bin/bash
@@ -163,7 +164,7 @@ declare -A data=(
 
     ['time']=$time
 
-); echo \${data[\${1,,}]}
+); printf "\${data[\${1,,}]}"
 EOF
 
 errr=$(($errr+$?))
