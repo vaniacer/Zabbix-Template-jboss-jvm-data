@@ -4,16 +4,11 @@ user=$1 # management user
 pass=$2 # management user password
 port=$3 # management port
 type=$4 # what to discover(garbage-collector or memory-pool)
-data='
-{
-    "operation":"read-resource",
-    "address":[{"core-service":"platform-mbean"},
-               {"type":"TYPE"}]
-}'
+data='{"operation":"read-resource","address":[{"core-service":"platform-mbean"},{"type":"TYPE"}]}'
+data="${data//TYPE/$type}"
 
 wget -qO- http://$user:$pass@localhost:$port/management \
---header="Content-Type: application/json" \
---post-data="${data//TYPE/$type}" | \
+--header="Content-Type: application/json" --post-data="$data" | \
 
 python -c "
 import sys, json
