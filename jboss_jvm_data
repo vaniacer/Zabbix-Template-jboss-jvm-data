@@ -9,11 +9,11 @@ attr=$6 # attribute name
 metr=$7 # metric name
 
 case $addr in
-    mbean) addr='{"core-service":"platform-mbean"},{"type":"TYPE"}';     item=$metr;;
-    deplm) addr='{"deployment":"application.war"},{"subsystem":"TYPE"}'; item=$metr;;
-    mpool) addr='{"core-service":"platform-mbean"},{"type":"memory-pool"},{"name":"TYPE"}'; item=$metr;;
-    garbg) addr='{"core-service":"platform-mbean"},{"type":"garbage-collector"},{"name":"TYPE"}'      ;;
-    datas) addr='{"subsystem":"datasources"},{"data-source":"DataaccessDS"},{"statistics":"TYPE"}'    ;;
+    mbean) addr='{"core-service":"platform-mbean"},{"type":"TYPE"}'    ;;
+    deplm) addr='{"deployment":"application.war"},{"subsystem":"TYPE"}';;
+    mpool) addr='{"core-service":"platform-mbean"},{"type":"memory-pool"},{"name":"TYPE"}'        ;;
+    garbg) addr='{"core-service":"platform-mbean"},{"type":"garbage-collector"},{"name":"TYPE"}'  ;;
+    datas) addr='{"subsystem":"datasources"},{"data-source":"DataaccessDS"},{"statistics":"TYPE"}';;
 esac
 
 data='{"operation":"read-attribute","name":"ATTR","address":[ADDR]}'
@@ -26,8 +26,8 @@ wget -qO- http://$user:$pass@localhost:$port/management \
 
 python -c "
 import sys, json
-item = '$item'
+metr = '$metr'
 if item:
-    print json.load(sys.stdin)['result'][item]
+    print json.load(sys.stdin)['result'][metr]
 else:
     print json.load(sys.stdin)['result']"
