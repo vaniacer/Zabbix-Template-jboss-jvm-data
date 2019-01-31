@@ -1,172 +1,33 @@
 #!/bin/bash
 
-errr=0
-user=$1
-pass=$2
-port=$3
-home=$4
-mode=${5:-wget_mode}
-file="/tmp/jboss_jvm_data_$port"
+user=$1 # management user
+pass=$2 # management user password
+port=$3 # management port
+addr=$4 # base metric address
+type=$5 # data type
+attr=$6 # attribute name
+metr=$7 # metric name
 
-wget_mode () {
-    #------------------------------------------------{ wget parameters }------------------------------------------------
-    head="Content-Type: application/json"
-    wget="wget -qO- http://$user:$pass@localhost:$port/management"
-
-    #------------------------------------------{ common parts in post strings }-----------------------------------------
-    close="\"}]}"
-    adres="\",\"address\":[{\""
-    start="{\"operation\":\"read-attribute\",\"name\":\""
-    mbean="${adres}core-service\":\"platform-mbean\"},{\"type\":\""
-    deplm="${adres}deployment\":\"application.war\"},{\"subsystem\":\""
-    datas="${adres}subsystem\":\"datasources\"},{\"data-source\":\"DataaccessDS\"},{\"statistics\":\""
-    garbg="${mbean}garbage-collector\"},{\"name\":\""
-    mpool="${mbean}memory-pool\"},{\"name\":\""
-
-    #---------------------------------------------{ construct post strings }--------------------------------------------
-    post_data=(
-        "heap-memory-usage${mbean}memory"
-        "non-heap-memory-usage${mbean}memory"
-        "collection-time${garbg}PS_MarkSweep"
-        "collection-count${garbg}PS_MarkSweep"
-        "collection-time${garbg}PS_Scavenge"
-        "collection-count${garbg}PS_Scavenge"
-        "daemon-thread-count${mbean}threading"
-        "peak-thread-count${mbean}threading"
-        "thread-count${mbean}threading"
-        "total-started-thread-count${mbean}threading"
-        "loaded-class-count${mbean}class-loading"
-        "unloaded-class-count${mbean}class-loading"
-        "total-loaded-class-count${mbean}class-loading"
-        "AvailableCount${datas}pool"
-        "InUseCount${datas}pool"
-        "MaxWaitCount${datas}pool"
-        "uptime${mbean}runtime"
-        "active-sessions${deplm}undertow"
-        "sessions-created${deplm}undertow"
-        "usage${mpool}Code_Cache"
-        "usage${mpool}PS_Old_Gen"
-    )
-
-    #-------------------------------------------{ WGet data from jboss jvm }--------------------------------------------
-    raw=$(for I in "${post_data[@]}"; { $wget --header="$head" --post-data="$start$I$close"; }); errr=$(($errr+$?))
-}
-
-cli_mode () {
-    #-------------------------------------------{ Get data from jboss jvm }---------------------------------------------
-    raw=$(
-        $home/jboss-bas-*/bin/jboss-cli.sh --controller=localhost:$port --user=$user --password=$pass -c '
-            /core-service=platform-mbean/type=memory:read-attribute(name=heap-memory-usage),
-            /core-service=platform-mbean/type=memory:read-attribute(name=non-heap-memory-usage),
-            /core-service=platform-mbean/type=garbage-collector/name=PS_MarkSweep:read-attribute(name=collection-time),
-            /core-service=platform-mbean/type=garbage-collector/name=PS_MarkSweep:read-attribute(name=collection-count),
-            /core-service=platform-mbean/type=garbage-collector/name=PS_Scavenge:read-attribute(name=collection-time),
-            /core-service=platform-mbean/type=garbage-collector/name=PS_Scavenge:read-attribute(name=collection-count),
-            /core-service=platform-mbean/type=threading:read-attribute(name=daemon-thread-count),
-            /core-service=platform-mbean/type=threading:read-attribute(name=peak-thread-count),
-            /core-service=platform-mbean/type=threading:read-attribute(name=thread-count),
-            /core-service=platform-mbean/type=threading:read-attribute(name=total-started-thread-count),
-            /core-service=platform-mbean/type=class-loading:read-attribute(name=loaded-class-count),
-            /core-service=platform-mbean/type=class-loading:read-attribute(name=unloaded-class-count),
-            /core-service=platform-mbean/type=class-loading:read-attribute(name=total-loaded-class-count),
-            /subsystem=datasources/data-source=DataaccessDS/statistics=pool:read-attribute(name=AvailableCount),
-            /subsystem=datasources/data-source=DataaccessDS/statistics=pool:read-attribute(name=InUseCount),
-            /subsystem=datasources/data-source=DataaccessDS/statistics=pool:read-attribute(name=MaxWaitCount),
-            /core-service=platform-mbean/type=runtime:read-attribute(name=uptime),
-            /deployment=application.war/subsystem=undertow:read-attribute(name=active-sessions),
-            /deployment=application.war/subsystem=undertow:read-attribute(name=sessions-created),
-            /core-service=platform-mbean/type=memory-pool/name=Code_Cache:read-attribute(name=usage),
-            /core-service=platform-mbean/type=memory-pool/name=PS_Old_Gen:read-attribute(name=usage)
-        ' 2>/dev/null
-    ); error=$(($error+$?))
-}
-
-case $mode in
-    'wget_mode' | 'cli_mode') $mode;;
-    * ) errr=$(($errr+1));;
+case $addr in
+    mbean) addr='{"core-service":"platform-mbean"},{"type":"TYPE"}';     item=$metr;;
+    deplm) addr='{"deployment":"application.war"},{"subsystem":"TYPE"}'; item=$metr;;
+    mpool) addr='{"core-service":"platform-mbean"},{"type":"memory-pool"},{"name":"TYPE"}'; item=$metr;;
+    garbg) addr='{"core-service":"platform-mbean"},{"type":"garbage-collector"},{"name":"TYPE"}'      ;;
+    datas) addr='{"subsystem":"datasources"},{"data-source":"DataaccessDS"},{"statistics":"TYPE"}'    ;;
 esac
 
-raw=( ${raw//[a-Z\{\}\:\"\=\>\,]/} )
+data='{"operation":"read-attribute","name":"ATTR","address":[ADDR]}'
+data="${data//ADDR/$addr}"
+data="${data//TYPE/$type}"
+data="${data//ATTR/$attr}"
 
-#----------------------------------------------{ Make some calculations }-----------------------------------------------
-. $file &> /dev/null && {
-    time=$(printf '%(%s)T')
+wget -qO- http://$user:$pass@localhost:$port/management \
+--header="Content-Type: application/json" --post-data="$data" | \
 
-    gc_scavenge_time=${data['gc scavenge time']:-$time}
-    gc_marksweep_time=${data['gc marksweep time']:-$time}
-    gc_scavenge_interval=${data['gc scavenge collection-interval']}
-    gc_marksweep_interval=${data['gc marksweep collection-interval']}
-
-    scavenge_counts=$((${raw[11]}-${data['gc scavenge collection-count']:-0}))
-    [[ $scavenge_counts -gt 0 ]] && {
-        gc_scavenge_interval=$(( ($time-$gc_scavenge_time)/$scavenge_counts ))
-        gc_scavenge_time=$time
-    }
-
-    marksweep_counts=$((${raw[9]}-${data['gc marksweep collection-count']:-0}))
-    [[ $marksweep_counts -gt 0 ]] && {
-        gc_marksweep_interval=$(( ($time-$gc_marksweep_time)/$marksweep_counts ))
-        gc_marksweep_time=$time
-    }
-}
-#-----------------------------------{ Save data to file in an indexed array form }--------------------------------------
-cat > "$file" << EOF
-#!/bin/bash
-declare -A data=(
-
-    ['heap init']=${raw[0]}
-    ['heap used']=${raw[1]}
-    ['heap committed']=${raw[2]}
-    ['heap max']=${raw[3]}
-
-    ['non heap init']=${raw[4]}
-    ['non heap used']=${raw[5]}
-    ['non heap committed']=${raw[6]}
-    ['non heap max']=${raw[7]}
-
-    ['gc marksweep collection-time']=${raw[8]}
-    ['gc marksweep collection-count']=${raw[9]}
-    ['gc marksweep collection-interval']=$gc_marksweep_interval
-    ['gc marksweep time']=$gc_marksweep_time
-
-    ['gc scavenge collection-time']=${raw[10]}
-    ['gc scavenge collection-count']=${raw[11]}
-    ['gc scavenge collection-interval']=$gc_scavenge_interval
-    ['gc scavenge time']=$gc_scavenge_time
-
-    ['thread count daemon']=${raw[12]}
-    ['thread count peak']=${raw[13]}
-    ['thread count']=${raw[14]}
-    ['thread count total started']=${raw[15]}
-
-    ['class count loaded']=${raw[16]}
-    ['class count unloaded']=${raw[17]}
-    ['class count total loaded']=${raw[18]}
-
-    ['data source available count']=${raw[19]}
-    ['data source in use count']=${raw[20]}
-    ['data source max wait count']=${raw[21]}
-
-    ['jvm uptime']=${raw[22]}
-
-    ['application active sessions']=${raw[23]}
-    ['application sessions created']=${raw[24]}
-
-    ['memory-pool code_cache init']=${raw[25]}
-    ['memory-pool code_cache used']=${raw[26]}
-    ['memory-pool code_cache committed']=${raw[27]}
-    ['memory-pool code_cache max']=${raw[28]}
-
-    ['memory-pool ps_old_gen init']=${raw[29]}
-    ['memory-pool ps_old_gen used']=${raw[30]}
-    ['memory-pool ps_old_gen committed']=${raw[31]}
-    ['memory-pool ps_old_gen max']=${raw[32]}
-
-    ['time']=$time
-
-); printf "\${data[\${1,,}]}"
-EOF
-
-errr=$(($errr+$?))
-chmod +x "$file"
-printf "$errr"
+python -c "
+import sys, json
+item = '$item'
+if item:
+    print json.load(sys.stdin)['result'][item]
+else:
+    print json.load(sys.stdin)['result']"

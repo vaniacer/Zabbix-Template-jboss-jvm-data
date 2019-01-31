@@ -1,0 +1,24 @@
+#!/bin/bash
+
+user=$1 # management user
+pass=$2 # management user password
+port=$3 # management port
+type=$4 # what to discover(garbage-collector or memory-pool)
+data='
+{
+    "operation":"read-resource",
+    "address":[{"core-service":"platform-mbean"},
+               {"type":"TYPE"}]
+}'
+
+wget -qO- http://$user:$pass@localhost:$port/management \
+--header="Content-Type: application/json" \
+--post-data="${data//TYPE/$type}" | \
+
+python -c "
+import sys, json
+data=[]
+names=json.load(sys.stdin)['result']['name'].keys()
+for name in names:
+    data.append({'#NAME': name})
+print json.dumps({'data': data})"
