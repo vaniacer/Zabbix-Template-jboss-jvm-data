@@ -27,7 +27,7 @@ wget -qO- http://$user:$pass@localhost:$port/management \
 python -c "
 import sys, json
 metr = '$metr'
-if item:
+if metr:
     print json.load(sys.stdin)['result'][metr]
 else:
     print json.load(sys.stdin)['result']"
