@@ -15,5 +15,5 @@ import sys, json
 data=[]
 names=json.load(sys.stdin)['result']['name'].keys()
 for name in names:
-    data.append({'#NAME': name})
+    data.append({'{#NAME}': name})
 print json.dumps({'data': data})"
