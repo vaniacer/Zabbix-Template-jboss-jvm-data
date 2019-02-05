@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.0</version>
-    <date>2019-02-01T15:17:04Z</date>
+    <date>2019-02-05T07:28:27Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -1940,9 +1940,9 @@
     </templates>
     <triggers>
         <trigger>
-            <expression>{Template jboss jvm data:system.run[{$DATA_COLLECTOR} {$MANAGMENT_USER} {$MANAGMENT_PASS} {$MANAGMENT_PORT} mbean memory heap-memory-usage used].last(9)}&#13;
+            <expression>{Template jboss jvm data:system.run[{$DATA_COLLECTOR} {$MANAGMENT_USER} {$MANAGMENT_PASS} {$MANAGMENT_PORT} mbean memory heap-memory-usage used].last(#10)}&#13;
 &gt;&#13;
-({Template jboss jvm data:system.run[{$DATA_COLLECTOR} {$MANAGMENT_USER} {$MANAGMENT_PASS} {$MANAGMENT_PORT} mbean memory heap-memory-usage max].last(0)}*0.8)</expression>
+({Template jboss jvm data:system.run[{$DATA_COLLECTOR} {$MANAGMENT_USER} {$MANAGMENT_PASS} {$MANAGMENT_PORT} mbean memory heap-memory-usage max].last()}*0.8)</expression>
             <recovery_mode>0</recovery_mode>
             <recovery_expression/>
             <name>Heap memory used by 80%</name>
