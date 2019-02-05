@@ -7,11 +7,11 @@ So you have to create a management user(zabbix) in jboss to access in management
 
 In template change this macro values to support your needs:</br>
 <pre>
-{$DATA_COLLECTOR}  /PATH/TO/jboss_jvm_data
 {$DATA_DISCOVERER} /PATH/TO/jboss_jvm_discovery
+{$DATA_COLLECTOR}  /PATH/TO/jboss_jvm_data
 {$MANAGMENT_PASS}  PASSWORD
-{$MANAGMENT_PORT}  9990
 {$MANAGMENT_USER}  zabbix
+{$MANAGMENT_PORT}  9990
 </pre>
 
 Collected items:</br>
