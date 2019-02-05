@@ -2,7 +2,7 @@
 
 This is a Zabbix(4.0+) template and scripts to monitor jboss jvm stats.
 Data collected via wget http queries to a managment port of jboss instance(default 9990).
-So you have to create a management user(zabbix) in jboss for access to management realm.
+So you have to create a management user(zabbix) in jboss to access in management realm.
 <pre>$JBOSS_HOME/bin/add-user.sh -s -u zabbix -p PASSWORD</pre>
 
 In template change this macro values to support your needs:</br>
