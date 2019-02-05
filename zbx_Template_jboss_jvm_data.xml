@@ -1911,11 +1911,11 @@
             <macros>
                 <macro>
                     <macro>{$DATA_COLLECTOR}</macro>
-                    <value>/var/lib/jboss/.utils/jboss_jvm_data</value>
+                    <value>/PTATH/TO/jboss_jvm_data</value>
                 </macro>
                 <macro>
                     <macro>{$DATA_DISCOVERER}</macro>
-                    <value>/var/lib/jboss/.utils/jboss_jvm_discovery</value>
+                    <value>/PTATH/TO/jboss_jvm_discovery</value>
                 </macro>
                 <macro>
                     <macro>{$JBOSS_HOME}</macro>
@@ -1923,7 +1923,7 @@
                 </macro>
                 <macro>
                     <macro>{$MANAGMENT_PASS}</macro>
-                    <value>bWFzdGVyMTFrZXk</value>
+                    <value>PASSWORD</value>
                 </macro>
                 <macro>
                     <macro>{$MANAGMENT_PORT}</macro>
