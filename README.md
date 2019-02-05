@@ -44,5 +44,6 @@ Thread count peak</br>
 Thread count total started</br>
 
 There are two discovery rules for garbage collectors(GC) and memory pools(MP).
-For each GC then creates items: collection-count and collection-time.
+For each discovered GC this items will be created: collection-count and collection-time.
 And for MP: usage committed, usage init, usage max, usage used.
+Some graphs and triggers added.
