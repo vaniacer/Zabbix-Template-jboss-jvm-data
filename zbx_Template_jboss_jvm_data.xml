@@ -1918,10 +1918,6 @@
                     <value>/PTATH/TO/jboss_jvm_discovery</value>
                 </macro>
                 <macro>
-                    <macro>{$JBOSS_HOME}</macro>
-                    <value>/var/lib/jboss/rebudget</value>
-                </macro>
-                <macro>
                     <macro>{$MANAGMENT_PASS}</macro>
                     <value>PASSWORD</value>
                 </macro>
