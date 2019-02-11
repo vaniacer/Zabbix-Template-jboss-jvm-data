@@ -1,17 +1,17 @@
 # Jboss-zabbix
 
-This is a Zabbix template to monitor jboss jvm stats.
+This is a Zabbix(4.0+) template and scripts to monitor jboss jvm stats.
 Data collected via wget http queries to a managment port of jboss instance(default 9990).
-So you have to create a management user(zabbix) in jboss for access to management realm.
+So you have to create a management user(zabbix) in jboss to access in management realm.
 <pre>$JBOSS_HOME/bin/add-user.sh -s -u zabbix -p PASSWORD</pre>
 
 In template change this macro values to support your needs:</br>
 <pre>
-{$DATA_COLLECTOR}  /PATH/TO/jboss_jvm_data
 {$DATA_DISCOVERER} /PATH/TO/jboss_jvm_discovery
+{$DATA_COLLECTOR}  /PATH/TO/jboss_jvm_data
 {$MANAGMENT_PASS}  PASSWORD
-{$MANAGMENT_PORT}  9990
 {$MANAGMENT_USER}  zabbix
+{$MANAGMENT_PORT}  9990
 </pre>
 
 Collected items:</br>
@@ -44,5 +44,6 @@ Thread count peak</br>
 Thread count total started</br>
 
 There are two discovery rules for garbage collectors(GC) and memory pools(MP).
-For each GC then creates items: collection-count and collection-time.
+For each discovered GC this items will be created: collection-count and collection-time.
 And for MP: usage committed, usage init, usage max, usage used.
+Some graphs and triggers added.
