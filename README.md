@@ -29,7 +29,7 @@ Data source max wait count</br>
 JVM Uptime</br>
 JVM VM-Name</br>
 JVM VM-Vendor</br>
-JVM VM-Version/br>
+JVM VM-Version</br>
 
 Memory Heap committed</br>
 Memory Heap init</br>
