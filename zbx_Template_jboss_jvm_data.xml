@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.0</version>
-    <date>2019-02-14T06:51:19Z</date>
+    <date>2019-02-14T08:15:52Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -1438,7 +1438,7 @@
                     <description>Discovery garbage collectors</description>
                     <item_prototypes>
                         <item_prototype>
-                            <name>GC {#NAME} collection-count diff</name>
+                            <name>GC {#NAME}</name>
                             <type>15</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -1662,8 +1662,44 @@
                             <graph_items>
                                 <graph_item>
                                     <sortorder>0</sortorder>
+                                    <drawtype>0</drawtype>
+                                    <color>199C0D</color>
+                                    <yaxisside>0</yaxisside>
+                                    <calc_fnc>2</calc_fnc>
+                                    <type>0</type>
+                                    <item>
+                                        <host>Template jboss jvm data</host>
+                                        <key>system.run[{$DATA_COLLECTOR} {$MANAGMENT_USER} {$MANAGMENT_PASS} {$MANAGMENT_PORT} mbean memory heap-memory-usage committed]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>1</sortorder>
+                                    <drawtype>0</drawtype>
+                                    <color>2774A4</color>
+                                    <yaxisside>0</yaxisside>
+                                    <calc_fnc>2</calc_fnc>
+                                    <type>0</type>
+                                    <item>
+                                        <host>Template jboss jvm data</host>
+                                        <key>system.run[{$DATA_COLLECTOR} {$MANAGMENT_USER} {$MANAGMENT_PASS} {$MANAGMENT_PORT} mbean memory heap-memory-usage init]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>2</sortorder>
+                                    <drawtype>0</drawtype>
+                                    <color>F63100</color>
+                                    <yaxisside>0</yaxisside>
+                                    <calc_fnc>2</calc_fnc>
+                                    <type>0</type>
+                                    <item>
+                                        <host>Template jboss jvm data</host>
+                                        <key>system.run[{$DATA_COLLECTOR} {$MANAGMENT_USER} {$MANAGMENT_PASS} {$MANAGMENT_PORT} mbean memory heap-memory-usage max]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>3</sortorder>
                                     <drawtype>5</drawtype>
-                                    <color>FFA726</color>
+                                    <color>F7941D</color>
                                     <yaxisside>0</yaxisside>
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
@@ -1673,9 +1709,9 @@
                                     </item>
                                 </graph_item>
                                 <graph_item>
-                                    <sortorder>1</sortorder>
-                                    <drawtype>2</drawtype>
-                                    <color>F4511E</color>
+                                    <sortorder>4</sortorder>
+                                    <drawtype>0</drawtype>
+                                    <color>B39DDB</color>
                                     <yaxisside>1</yaxisside>
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
@@ -1726,6 +1762,86 @@
                                     <item>
                                         <host>Template jboss jvm data</host>
                                         <key>system.run[{$DATA_COLLECTOR} {$MANAGMENT_USER} {$MANAGMENT_PASS} {$MANAGMENT_PORT} garbg {#NAME} collection-time]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                        <graph_prototype>
+                            <name>JVM GC {#NAME} Heap Memory usage</name>
+                            <width>900</width>
+                            <height>200</height>
+                            <yaxismin>0.0000</yaxismin>
+                            <yaxismax>100.0000</yaxismax>
+                            <show_work_period>1</show_work_period>
+                            <show_triggers>1</show_triggers>
+                            <type>0</type>
+                            <show_legend>1</show_legend>
+                            <show_3d>0</show_3d>
+                            <percent_left>0.0000</percent_left>
+                            <percent_right>0.0000</percent_right>
+                            <ymin_type_1>0</ymin_type_1>
+                            <ymax_type_1>0</ymax_type_1>
+                            <ymin_item_1>0</ymin_item_1>
+                            <ymax_item_1>0</ymax_item_1>
+                            <graph_items>
+                                <graph_item>
+                                    <sortorder>0</sortorder>
+                                    <drawtype>0</drawtype>
+                                    <color>199C0D</color>
+                                    <yaxisside>0</yaxisside>
+                                    <calc_fnc>2</calc_fnc>
+                                    <type>0</type>
+                                    <item>
+                                        <host>Template jboss jvm data</host>
+                                        <key>system.run[{$DATA_COLLECTOR} {$MANAGMENT_USER} {$MANAGMENT_PASS} {$MANAGMENT_PORT} mbean memory heap-memory-usage committed]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>1</sortorder>
+                                    <drawtype>0</drawtype>
+                                    <color>2774A4</color>
+                                    <yaxisside>0</yaxisside>
+                                    <calc_fnc>2</calc_fnc>
+                                    <type>0</type>
+                                    <item>
+                                        <host>Template jboss jvm data</host>
+                                        <key>system.run[{$DATA_COLLECTOR} {$MANAGMENT_USER} {$MANAGMENT_PASS} {$MANAGMENT_PORT} mbean memory heap-memory-usage init]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>2</sortorder>
+                                    <drawtype>0</drawtype>
+                                    <color>F63100</color>
+                                    <yaxisside>0</yaxisside>
+                                    <calc_fnc>2</calc_fnc>
+                                    <type>0</type>
+                                    <item>
+                                        <host>Template jboss jvm data</host>
+                                        <key>system.run[{$DATA_COLLECTOR} {$MANAGMENT_USER} {$MANAGMENT_PASS} {$MANAGMENT_PORT} mbean memory heap-memory-usage max]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>3</sortorder>
+                                    <drawtype>5</drawtype>
+                                    <color>F7941D</color>
+                                    <yaxisside>0</yaxisside>
+                                    <calc_fnc>2</calc_fnc>
+                                    <type>0</type>
+                                    <item>
+                                        <host>Template jboss jvm data</host>
+                                        <key>system.run[{$DATA_COLLECTOR} {$MANAGMENT_USER} {$MANAGMENT_PASS} {$MANAGMENT_PORT} mbean memory heap-memory-usage used]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>4</sortorder>
+                                    <drawtype>0</drawtype>
+                                    <color>B39DDB</color>
+                                    <yaxisside>1</yaxisside>
+                                    <calc_fnc>2</calc_fnc>
+                                    <type>0</type>
+                                    <item>
+                                        <host>Template jboss jvm data</host>
+                                        <key>GC[{#NAME} collection-count diff]</key>
                                     </item>
                                 </graph_item>
                             </graph_items>
@@ -2162,7 +2278,7 @@
                             <dynamic>0</dynamic>
                             <sort_triggers>0</sort_triggers>
                             <resource>
-                                <name>JVM GC {#NAME} collection-count vs Heap Memory usage</name>
+                                <name>JVM GC {#NAME} Heap Memory usage</name>
                                 <host>Template jboss jvm data</host>
                             </resource>
                             <max_columns>2</max_columns>
@@ -2206,7 +2322,7 @@
                             <dynamic>0</dynamic>
                             <sort_triggers>0</sort_triggers>
                             <resource>
-                                <name>JVM Heap memory usage</name>
+                                <name>JVM Application sessions</name>
                                 <host>Template jboss jvm data</host>
                             </resource>
                             <max_columns>3</max_columns>
@@ -2228,50 +2344,6 @@
                             <dynamic>0</dynamic>
                             <sort_triggers>0</sort_triggers>
                             <resource>
-                                <name>JVM Non heap memory usage</name>
-                                <host>Template jboss jvm data</host>
-                            </resource>
-                            <max_columns>3</max_columns>
-                            <application/>
-                        </screen_item>
-                        <screen_item>
-                            <resourcetype>0</resourcetype>
-                            <width>600</width>
-                            <height>200</height>
-                            <x>0</x>
-                            <y>3</y>
-                            <colspan>1</colspan>
-                            <rowspan>1</rowspan>
-                            <elements>0</elements>
-                            <valign>1</valign>
-                            <halign>1</halign>
-                            <style>0</style>
-                            <url/>
-                            <dynamic>0</dynamic>
-                            <sort_triggers>0</sort_triggers>
-                            <resource>
-                                <name>JVM Application sessions</name>
-                                <host>Template jboss jvm data</host>
-                            </resource>
-                            <max_columns>3</max_columns>
-                            <application/>
-                        </screen_item>
-                        <screen_item>
-                            <resourcetype>0</resourcetype>
-                            <width>600</width>
-                            <height>200</height>
-                            <x>1</x>
-                            <y>3</y>
-                            <colspan>1</colspan>
-                            <rowspan>1</rowspan>
-                            <elements>0</elements>
-                            <valign>1</valign>
-                            <halign>1</halign>
-                            <style>0</style>
-                            <url/>
-                            <dynamic>0</dynamic>
-                            <sort_triggers>0</sort_triggers>
-                            <resource>
                                 <name>JVM Data source</name>
                                 <host>Template jboss jvm data</host>
                             </resource>
@@ -2283,7 +2355,7 @@
                             <width>600</width>
                             <height>200</height>
                             <x>0</x>
-                            <y>4</y>
+                            <y>3</y>
                             <colspan>1</colspan>
                             <rowspan>1</rowspan>
                             <elements>0</elements>
@@ -2305,7 +2377,7 @@
                             <width>600</width>
                             <height>200</height>
                             <x>1</x>
-                            <y>4</y>
+                            <y>3</y>
                             <colspan>1</colspan>
                             <rowspan>1</rowspan>
                             <elements>0</elements>
@@ -2327,7 +2399,7 @@
                             <width>600</width>
                             <height>200</height>
                             <x>0</x>
-                            <y>5</y>
+                            <y>4</y>
                             <colspan>2</colspan>
                             <rowspan>1</rowspan>
                             <elements>0</elements>
@@ -2342,6 +2414,50 @@
                                 <host>Template jboss jvm data</host>
                             </resource>
                             <max_columns>2</max_columns>
+                            <application/>
+                        </screen_item>
+                        <screen_item>
+                            <resourcetype>0</resourcetype>
+                            <width>600</width>
+                            <height>200</height>
+                            <x>0</x>
+                            <y>5</y>
+                            <colspan>1</colspan>
+                            <rowspan>1</rowspan>
+                            <elements>0</elements>
+                            <valign>1</valign>
+                            <halign>1</halign>
+                            <style>0</style>
+                            <url/>
+                            <dynamic>0</dynamic>
+                            <sort_triggers>0</sort_triggers>
+                            <resource>
+                                <name>JVM Heap memory usage</name>
+                                <host>Template jboss jvm data</host>
+                            </resource>
+                            <max_columns>3</max_columns>
+                            <application/>
+                        </screen_item>
+                        <screen_item>
+                            <resourcetype>0</resourcetype>
+                            <width>600</width>
+                            <height>200</height>
+                            <x>1</x>
+                            <y>5</y>
+                            <colspan>1</colspan>
+                            <rowspan>1</rowspan>
+                            <elements>0</elements>
+                            <valign>1</valign>
+                            <halign>1</halign>
+                            <style>0</style>
+                            <url/>
+                            <dynamic>0</dynamic>
+                            <sort_triggers>0</sort_triggers>
+                            <resource>
+                                <name>JVM Non heap memory usage</name>
+                                <host>Template jboss jvm data</host>
+                            </resource>
+                            <max_columns>3</max_columns>
                             <application/>
                         </screen_item>
                     </screen_items>
