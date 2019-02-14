@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.0</version>
-    <date>2019-02-14T12:44:34Z</date>
+    <date>2019-02-14T13:38:35Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -1803,7 +1803,7 @@ last(system.run[{$DATA_COLLECTOR} {$MANAGMENT_USER} {$MANAGMENT_PASS} {$MANAGMEN
                             <graph_items>
                                 <graph_item>
                                     <sortorder>0</sortorder>
-                                    <drawtype>0</drawtype>
+                                    <drawtype>5</drawtype>
                                     <color>F4511E</color>
                                     <yaxisside>1</yaxisside>
                                     <calc_fnc>2</calc_fnc>
@@ -2321,168 +2321,14 @@ last(system.run[{$DATA_COLLECTOR} {$MANAGMENT_USER} {$MANAGMENT_PASS} {$MANAGMEN
                 <screen>
                     <name>JVM</name>
                     <hsize>2</hsize>
-                    <vsize>6</vsize>
+                    <vsize>7</vsize>
                     <screen_items>
                         <screen_item>
-                            <resourcetype>20</resourcetype>
+                            <resourcetype>0</resourcetype>
                             <width>600</width>
                             <height>200</height>
                             <x>0</x>
                             <y>0</y>
-                            <colspan>2</colspan>
-                            <rowspan>1</rowspan>
-                            <elements>0</elements>
-                            <valign>1</valign>
-                            <halign>1</halign>
-                            <style>0</style>
-                            <url/>
-                            <dynamic>0</dynamic>
-                            <sort_triggers>0</sort_triggers>
-                            <resource>
-                                <name>JVM GC {#NAME} Heap Memory usage</name>
-                                <host>Template jboss jvm data</host>
-                            </resource>
-                            <max_columns>2</max_columns>
-                            <application/>
-                        </screen_item>
-                        <screen_item>
-                            <resourcetype>20</resourcetype>
-                            <width>600</width>
-                            <height>200</height>
-                            <x>0</x>
-                            <y>1</y>
-                            <colspan>2</colspan>
-                            <rowspan>1</rowspan>
-                            <elements>0</elements>
-                            <valign>1</valign>
-                            <halign>1</halign>
-                            <style>0</style>
-                            <url/>
-                            <dynamic>0</dynamic>
-                            <sort_triggers>0</sort_triggers>
-                            <resource>
-                                <name>JVM GC {#NAME} collection-time | collection-count</name>
-                                <host>Template jboss jvm data</host>
-                            </resource>
-                            <max_columns>2</max_columns>
-                            <application/>
-                        </screen_item>
-                        <screen_item>
-                            <resourcetype>0</resourcetype>
-                            <width>600</width>
-                            <height>200</height>
-                            <x>0</x>
-                            <y>2</y>
-                            <colspan>1</colspan>
-                            <rowspan>1</rowspan>
-                            <elements>0</elements>
-                            <valign>1</valign>
-                            <halign>1</halign>
-                            <style>0</style>
-                            <url/>
-                            <dynamic>0</dynamic>
-                            <sort_triggers>0</sort_triggers>
-                            <resource>
-                                <name>JVM Application sessions</name>
-                                <host>Template jboss jvm data</host>
-                            </resource>
-                            <max_columns>3</max_columns>
-                            <application/>
-                        </screen_item>
-                        <screen_item>
-                            <resourcetype>0</resourcetype>
-                            <width>600</width>
-                            <height>200</height>
-                            <x>1</x>
-                            <y>2</y>
-                            <colspan>1</colspan>
-                            <rowspan>1</rowspan>
-                            <elements>0</elements>
-                            <valign>1</valign>
-                            <halign>1</halign>
-                            <style>0</style>
-                            <url/>
-                            <dynamic>0</dynamic>
-                            <sort_triggers>0</sort_triggers>
-                            <resource>
-                                <name>JVM Data source</name>
-                                <host>Template jboss jvm data</host>
-                            </resource>
-                            <max_columns>3</max_columns>
-                            <application/>
-                        </screen_item>
-                        <screen_item>
-                            <resourcetype>0</resourcetype>
-                            <width>600</width>
-                            <height>200</height>
-                            <x>0</x>
-                            <y>3</y>
-                            <colspan>1</colspan>
-                            <rowspan>1</rowspan>
-                            <elements>0</elements>
-                            <valign>1</valign>
-                            <halign>1</halign>
-                            <style>0</style>
-                            <url/>
-                            <dynamic>0</dynamic>
-                            <sort_triggers>0</sort_triggers>
-                            <resource>
-                                <name>JVM Class count</name>
-                                <host>Template jboss jvm data</host>
-                            </resource>
-                            <max_columns>3</max_columns>
-                            <application/>
-                        </screen_item>
-                        <screen_item>
-                            <resourcetype>0</resourcetype>
-                            <width>600</width>
-                            <height>200</height>
-                            <x>1</x>
-                            <y>3</y>
-                            <colspan>1</colspan>
-                            <rowspan>1</rowspan>
-                            <elements>0</elements>
-                            <valign>1</valign>
-                            <halign>1</halign>
-                            <style>0</style>
-                            <url/>
-                            <dynamic>0</dynamic>
-                            <sort_triggers>0</sort_triggers>
-                            <resource>
-                                <name>JVM Thread count</name>
-                                <host>Template jboss jvm data</host>
-                            </resource>
-                            <max_columns>3</max_columns>
-                            <application/>
-                        </screen_item>
-                        <screen_item>
-                            <resourcetype>20</resourcetype>
-                            <width>600</width>
-                            <height>200</height>
-                            <x>0</x>
-                            <y>4</y>
-                            <colspan>2</colspan>
-                            <rowspan>1</rowspan>
-                            <elements>0</elements>
-                            <valign>1</valign>
-                            <halign>1</halign>
-                            <style>0</style>
-                            <url/>
-                            <dynamic>0</dynamic>
-                            <sort_triggers>0</sort_triggers>
-                            <resource>
-                                <name>JVM MP {#NAME} usage</name>
-                                <host>Template jboss jvm data</host>
-                            </resource>
-                            <max_columns>2</max_columns>
-                            <application/>
-                        </screen_item>
-                        <screen_item>
-                            <resourcetype>0</resourcetype>
-                            <width>600</width>
-                            <height>200</height>
-                            <x>0</x>
-                            <y>5</y>
                             <colspan>1</colspan>
                             <rowspan>1</rowspan>
                             <elements>0</elements>
@@ -2504,7 +2350,7 @@ last(system.run[{$DATA_COLLECTOR} {$MANAGMENT_USER} {$MANAGMENT_PASS} {$MANAGMEN
                             <width>600</width>
                             <height>200</height>
                             <x>1</x>
-                            <y>5</y>
+                            <y>0</y>
                             <colspan>1</colspan>
                             <rowspan>1</rowspan>
                             <elements>0</elements>
@@ -2521,6 +2367,160 @@ last(system.run[{$DATA_COLLECTOR} {$MANAGMENT_USER} {$MANAGMENT_PASS} {$MANAGMEN
                             <max_columns>3</max_columns>
                             <application/>
                         </screen_item>
+                        <screen_item>
+                            <resourcetype>20</resourcetype>
+                            <width>600</width>
+                            <height>200</height>
+                            <x>0</x>
+                            <y>1</y>
+                            <colspan>2</colspan>
+                            <rowspan>1</rowspan>
+                            <elements>0</elements>
+                            <valign>1</valign>
+                            <halign>1</halign>
+                            <style>0</style>
+                            <url/>
+                            <dynamic>0</dynamic>
+                            <sort_triggers>0</sort_triggers>
+                            <resource>
+                                <name>JVM GC {#NAME} Heap Memory usage</name>
+                                <host>Template jboss jvm data</host>
+                            </resource>
+                            <max_columns>2</max_columns>
+                            <application/>
+                        </screen_item>
+                        <screen_item>
+                            <resourcetype>20</resourcetype>
+                            <width>600</width>
+                            <height>200</height>
+                            <x>0</x>
+                            <y>3</y>
+                            <colspan>2</colspan>
+                            <rowspan>1</rowspan>
+                            <elements>0</elements>
+                            <valign>1</valign>
+                            <halign>1</halign>
+                            <style>0</style>
+                            <url/>
+                            <dynamic>0</dynamic>
+                            <sort_triggers>0</sort_triggers>
+                            <resource>
+                                <name>JVM GC {#NAME} collection-time | collection-count</name>
+                                <host>Template jboss jvm data</host>
+                            </resource>
+                            <max_columns>2</max_columns>
+                            <application/>
+                        </screen_item>
+                        <screen_item>
+                            <resourcetype>0</resourcetype>
+                            <width>600</width>
+                            <height>200</height>
+                            <x>0</x>
+                            <y>4</y>
+                            <colspan>1</colspan>
+                            <rowspan>1</rowspan>
+                            <elements>0</elements>
+                            <valign>1</valign>
+                            <halign>1</halign>
+                            <style>0</style>
+                            <url/>
+                            <dynamic>0</dynamic>
+                            <sort_triggers>0</sort_triggers>
+                            <resource>
+                                <name>JVM Class count</name>
+                                <host>Template jboss jvm data</host>
+                            </resource>
+                            <max_columns>3</max_columns>
+                            <application/>
+                        </screen_item>
+                        <screen_item>
+                            <resourcetype>0</resourcetype>
+                            <width>600</width>
+                            <height>200</height>
+                            <x>1</x>
+                            <y>4</y>
+                            <colspan>1</colspan>
+                            <rowspan>1</rowspan>
+                            <elements>0</elements>
+                            <valign>1</valign>
+                            <halign>1</halign>
+                            <style>0</style>
+                            <url/>
+                            <dynamic>0</dynamic>
+                            <sort_triggers>0</sort_triggers>
+                            <resource>
+                                <name>JVM Thread count</name>
+                                <host>Template jboss jvm data</host>
+                            </resource>
+                            <max_columns>3</max_columns>
+                            <application/>
+                        </screen_item>
+                        <screen_item>
+                            <resourcetype>0</resourcetype>
+                            <width>600</width>
+                            <height>200</height>
+                            <x>0</x>
+                            <y>5</y>
+                            <colspan>1</colspan>
+                            <rowspan>1</rowspan>
+                            <elements>0</elements>
+                            <valign>1</valign>
+                            <halign>1</halign>
+                            <style>0</style>
+                            <url/>
+                            <dynamic>0</dynamic>
+                            <sort_triggers>0</sort_triggers>
+                            <resource>
+                                <name>JVM Application sessions</name>
+                                <host>Template jboss jvm data</host>
+                            </resource>
+                            <max_columns>3</max_columns>
+                            <application/>
+                        </screen_item>
+                        <screen_item>
+                            <resourcetype>0</resourcetype>
+                            <width>600</width>
+                            <height>200</height>
+                            <x>1</x>
+                            <y>5</y>
+                            <colspan>1</colspan>
+                            <rowspan>1</rowspan>
+                            <elements>0</elements>
+                            <valign>1</valign>
+                            <halign>1</halign>
+                            <style>0</style>
+                            <url/>
+                            <dynamic>0</dynamic>
+                            <sort_triggers>0</sort_triggers>
+                            <resource>
+                                <name>JVM Data source</name>
+                                <host>Template jboss jvm data</host>
+                            </resource>
+                            <max_columns>3</max_columns>
+                            <application/>
+                        </screen_item>
+                        <screen_item>
+                            <resourcetype>20</resourcetype>
+                            <width>600</width>
+                            <height>200</height>
+                            <x>0</x>
+                            <y>6</y>
+                            <colspan>2</colspan>
+                            <rowspan>1</rowspan>
+                            <elements>0</elements>
+                            <valign>1</valign>
+                            <halign>1</halign>
+                            <style>0</style>
+                            <url/>
+                            <dynamic>0</dynamic>
+                            <sort_triggers>0</sort_triggers>
+                            <resource>
+                                <name>JVM MP {#NAME} usage</name>
+                                <host>Template jboss jvm data</host>
+                            </resource>
+                            <max_columns>2</max_columns>
+                            <application/>
+                        </screen_item>
                     </screen_items>
                 </screen>
             </screens>
@@ -2528,7 +2528,7 @@ last(system.run[{$DATA_COLLECTOR} {$MANAGMENT_USER} {$MANAGMENT_PASS} {$MANAGMEN
     </templates>
     <triggers>
         <trigger>
-            <expression>{Template jboss jvm data:HeapUsage.avg(#10)}&gt;=90</expression>
+            <expression>{Template jboss jvm data:HeapUsage.avg(#15)}&gt;=90</expression>
             <recovery_mode>0</recovery_mode>
             <recovery_expression/>
             <name>Heap memory usage</name>
@@ -2667,7 +2667,7 @@ last(system.run[{$DATA_COLLECTOR} {$MANAGMENT_USER} {$MANAGMENT_PASS} {$MANAGMEN
                     <sortorder>2</sortorder>
                     <drawtype>0</drawtype>
                     <color>2774A4</color>
-                    <yaxisside>0</yaxisside>
+                    <yaxisside>1</yaxisside>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
@@ -2799,6 +2799,18 @@ last(system.run[{$DATA_COLLECTOR} {$MANAGMENT_USER} {$MANAGMENT_PASS} {$MANAGMEN
                         <key>system.run[{$DATA_COLLECTOR} {$MANAGMENT_USER} {$MANAGMENT_PASS} {$MANAGMENT_PORT} mbean memory heap-memory-usage used]</key>
                     </item>
                 </graph_item>
+                <graph_item>
+                    <sortorder>4</sortorder>
+                    <drawtype>4</drawtype>
+                    <color>EC407A</color>
+                    <yaxisside>1</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Template jboss jvm data</host>
+                        <key>HeapUsage</key>
+                    </item>
+                </graph_item>
             </graph_items>
         </graph>
         <graph>
@@ -2822,7 +2834,7 @@ last(system.run[{$DATA_COLLECTOR} {$MANAGMENT_USER} {$MANAGMENT_PASS} {$MANAGMEN
                 <graph_item>
                     <sortorder>0</sortorder>
                     <drawtype>0</drawtype>
-                    <color>199C0D</color>
+                    <color>FF5722</color>
                     <yaxisside>0</yaxisside>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
@@ -2846,7 +2858,7 @@ last(system.run[{$DATA_COLLECTOR} {$MANAGMENT_USER} {$MANAGMENT_PASS} {$MANAGMEN
                 <graph_item>
                     <sortorder>2</sortorder>
                     <drawtype>5</drawtype>
-                    <color>F7941D</color>
+                    <color>8BC34A</color>
                     <yaxisside>0</yaxisside>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
@@ -2914,7 +2926,7 @@ last(system.run[{$DATA_COLLECTOR} {$MANAGMENT_USER} {$MANAGMENT_PASS} {$MANAGMEN
                 <graph_item>
                     <sortorder>3</sortorder>
                     <drawtype>5</drawtype>
-                    <color>F7941D</color>
+                    <color>4DB6AC</color>
                     <yaxisside>1</yaxisside>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
