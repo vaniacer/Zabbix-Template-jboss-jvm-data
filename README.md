@@ -1,8 +1,8 @@
 # Jboss-zabbix
 
 This is a Zabbix(4.0+) template and scripts to monitor jboss jvm stats.
-Data collected via wget http queries to a managment port of jboss instance(default 9990).
-So you have to create a management user(zabbix) in jboss to access in management realm.
+Data collected via wget http queries to a managment port(default 9990) of a jboss instance.
+A management user(zabbix) required to access management realm. Create management user with this command:
 <pre>$JBOSS_HOME/bin/add-user.sh -s -u zabbix -p PASSWORD</pre>
 
 In template change this macro values to support your needs:</br>
@@ -29,7 +29,7 @@ Data source max wait count</br>
 JVM Uptime</br>
 JVM VM-Name</br>
 JVM VM-Vendor</br>
-JVM VM-Version/br>
+JVM VM-Version</br>
 
 Memory Heap committed</br>
 Memory Heap init</br>
