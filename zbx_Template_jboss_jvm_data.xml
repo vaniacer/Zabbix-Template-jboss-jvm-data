@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.0</version>
-    <date>2019-02-14T06:30:15Z</date>
+    <date>2019-02-14T06:51:19Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -2148,15 +2148,15 @@
                     <screen_items>
                         <screen_item>
                             <resourcetype>20</resourcetype>
-                            <width>500</width>
-                            <height>100</height>
+                            <width>600</width>
+                            <height>200</height>
                             <x>0</x>
                             <y>0</y>
                             <colspan>2</colspan>
                             <rowspan>1</rowspan>
                             <elements>0</elements>
-                            <valign>0</valign>
-                            <halign>0</halign>
+                            <valign>1</valign>
+                            <halign>1</halign>
                             <style>0</style>
                             <url/>
                             <dynamic>0</dynamic>
@@ -2170,15 +2170,15 @@
                         </screen_item>
                         <screen_item>
                             <resourcetype>20</resourcetype>
-                            <width>500</width>
-                            <height>100</height>
+                            <width>600</width>
+                            <height>200</height>
                             <x>0</x>
                             <y>1</y>
                             <colspan>2</colspan>
                             <rowspan>1</rowspan>
                             <elements>0</elements>
-                            <valign>0</valign>
-                            <halign>0</halign>
+                            <valign>1</valign>
+                            <halign>1</halign>
                             <style>0</style>
                             <url/>
                             <dynamic>0</dynamic>
@@ -2192,15 +2192,15 @@
                         </screen_item>
                         <screen_item>
                             <resourcetype>0</resourcetype>
-                            <width>500</width>
-                            <height>100</height>
+                            <width>600</width>
+                            <height>200</height>
                             <x>0</x>
                             <y>2</y>
                             <colspan>1</colspan>
                             <rowspan>1</rowspan>
                             <elements>0</elements>
-                            <valign>0</valign>
-                            <halign>0</halign>
+                            <valign>1</valign>
+                            <halign>1</halign>
                             <style>0</style>
                             <url/>
                             <dynamic>0</dynamic>
@@ -2214,15 +2214,15 @@
                         </screen_item>
                         <screen_item>
                             <resourcetype>0</resourcetype>
-                            <width>500</width>
-                            <height>100</height>
+                            <width>600</width>
+                            <height>200</height>
                             <x>1</x>
                             <y>2</y>
                             <colspan>1</colspan>
                             <rowspan>1</rowspan>
                             <elements>0</elements>
-                            <valign>0</valign>
-                            <halign>0</halign>
+                            <valign>1</valign>
+                            <halign>1</halign>
                             <style>0</style>
                             <url/>
                             <dynamic>0</dynamic>
@@ -2236,15 +2236,15 @@
                         </screen_item>
                         <screen_item>
                             <resourcetype>0</resourcetype>
-                            <width>500</width>
-                            <height>100</height>
+                            <width>600</width>
+                            <height>200</height>
                             <x>0</x>
                             <y>3</y>
                             <colspan>1</colspan>
                             <rowspan>1</rowspan>
                             <elements>0</elements>
-                            <valign>0</valign>
-                            <halign>0</halign>
+                            <valign>1</valign>
+                            <halign>1</halign>
                             <style>0</style>
                             <url/>
                             <dynamic>0</dynamic>
@@ -2258,15 +2258,15 @@
                         </screen_item>
                         <screen_item>
                             <resourcetype>0</resourcetype>
-                            <width>500</width>
-                            <height>100</height>
+                            <width>600</width>
+                            <height>200</height>
                             <x>1</x>
                             <y>3</y>
                             <colspan>1</colspan>
                             <rowspan>1</rowspan>
                             <elements>0</elements>
-                            <valign>0</valign>
-                            <halign>0</halign>
+                            <valign>1</valign>
+                            <halign>1</halign>
                             <style>0</style>
                             <url/>
                             <dynamic>0</dynamic>
@@ -2280,15 +2280,15 @@
                         </screen_item>
                         <screen_item>
                             <resourcetype>0</resourcetype>
-                            <width>500</width>
-                            <height>100</height>
+                            <width>600</width>
+                            <height>200</height>
                             <x>0</x>
                             <y>4</y>
                             <colspan>1</colspan>
                             <rowspan>1</rowspan>
                             <elements>0</elements>
-                            <valign>0</valign>
-                            <halign>0</halign>
+                            <valign>1</valign>
+                            <halign>1</halign>
                             <style>0</style>
                             <url/>
                             <dynamic>0</dynamic>
@@ -2302,15 +2302,15 @@
                         </screen_item>
                         <screen_item>
                             <resourcetype>0</resourcetype>
-                            <width>500</width>
-                            <height>100</height>
+                            <width>600</width>
+                            <height>200</height>
                             <x>1</x>
                             <y>4</y>
                             <colspan>1</colspan>
                             <rowspan>1</rowspan>
                             <elements>0</elements>
-                            <valign>0</valign>
-                            <halign>0</halign>
+                            <valign>1</valign>
+                            <halign>1</halign>
                             <style>0</style>
                             <url/>
                             <dynamic>0</dynamic>
@@ -2324,15 +2324,15 @@
                         </screen_item>
                         <screen_item>
                             <resourcetype>20</resourcetype>
-                            <width>500</width>
-                            <height>100</height>
+                            <width>600</width>
+                            <height>200</height>
                             <x>0</x>
                             <y>5</y>
                             <colspan>2</colspan>
                             <rowspan>1</rowspan>
                             <elements>0</elements>
-                            <valign>0</valign>
-                            <halign>0</halign>
+                            <valign>1</valign>
+                            <halign>1</halign>
                             <style>0</style>
                             <url/>
                             <dynamic>0</dynamic>
