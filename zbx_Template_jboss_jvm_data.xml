@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.0</version>
-    <date>2019-02-15T07:45:30Z</date>
+    <date>2019-02-15T13:28:40Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -1061,7 +1061,7 @@ last(system.run[{$DATA_COLLECTOR} {$MANAGMENT_USER} {$MANAGMENT_PASS} {$MANAGMEN
                     <history>10d</history>
                     <trends>0</trends>
                     <status>0</status>
-                    <value_type>4</value_type>
+                    <value_type>1</value_type>
                     <allowed_hosts/>
                     <units/>
                     <snmpv3_contextname/>
@@ -1120,7 +1120,7 @@ last(system.run[{$DATA_COLLECTOR} {$MANAGMENT_USER} {$MANAGMENT_PASS} {$MANAGMEN
                     <history>10d</history>
                     <trends>0</trends>
                     <status>0</status>
-                    <value_type>4</value_type>
+                    <value_type>1</value_type>
                     <allowed_hosts/>
                     <units/>
                     <snmpv3_contextname/>
@@ -1179,7 +1179,7 @@ last(system.run[{$DATA_COLLECTOR} {$MANAGMENT_USER} {$MANAGMENT_PASS} {$MANAGMEN
                     <history>10d</history>
                     <trends>0</trends>
                     <status>0</status>
-                    <value_type>4</value_type>
+                    <value_type>1</value_type>
                     <allowed_hosts/>
                     <units/>
                     <snmpv3_contextname/>
@@ -1704,7 +1704,7 @@ last(system.run[{$DATA_COLLECTOR} {$MANAGMENT_USER} {$MANAGMENT_PASS} {$MANAGMEN
                     </trigger_prototypes>
                     <graph_prototypes>
                         <graph_prototype>
-                            <name>JVM GC {#NAME} collection-count vs Heap Memory usage</name>
+                            <name>JVM GC {#NAME} collection-count | Heap Memory usage</name>
                             <width>900</width>
                             <height>200</height>
                             <yaxismin>0.0000</yaxismin>
@@ -1828,7 +1828,7 @@ last(system.run[{$DATA_COLLECTOR} {$MANAGMENT_USER} {$MANAGMENT_PASS} {$MANAGMEN
                             </graph_items>
                         </graph_prototype>
                         <graph_prototype>
-                            <name>JVM GC {#NAME} Heap Memory usage</name>
+                            <name>JVM GC {#NAME} | Heap Memory usage</name>
                             <width>900</width>
                             <height>200</height>
                             <yaxismin>0.0000</yaxismin>
@@ -2090,7 +2090,7 @@ last(system.run[{$DATA_COLLECTOR} {$MANAGMENT_USER} {$MANAGMENT_PASS} {$MANAGMEN
                             <history>90d</history>
                             <trends>365d</trends>
                             <status>0</status>
-                            <value_type>3</value_type>
+                            <value_type>0</value_type>
                             <allowed_hosts/>
                             <units>B</units>
                             <snmpv3_contextname/>
@@ -2383,7 +2383,7 @@ last(system.run[{$DATA_COLLECTOR} {$MANAGMENT_USER} {$MANAGMENT_PASS} {$MANAGMEN
                             <dynamic>0</dynamic>
                             <sort_triggers>0</sort_triggers>
                             <resource>
-                                <name>JVM GC {#NAME} Heap Memory usage</name>
+                                <name>JVM GC {#NAME} | Heap Memory usage</name>
                                 <host>Template jboss jvm data</host>
                             </resource>
                             <max_columns>2</max_columns>
