@@ -21,6 +21,10 @@ data="${data//ADDR/$addr}"
 data="${data//TYPE/$type}"
 data="${data//ATTR/$attr}"
 
+# curl version
+#curl -qo- --anyauth --user $user:$pass --header "Content-Type: application/json" \
+#--data "$data" http://localhost:$port/management 2>/dev/null | \
+
 wget -qO- http://$user:$pass@localhost:$port/management \
 --header="Content-Type: application/json" --post-data="$data" | \
 
