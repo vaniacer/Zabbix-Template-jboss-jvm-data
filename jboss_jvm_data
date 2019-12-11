@@ -1,12 +1,13 @@
 #!/bin/bash
 
-user=$1 # management user
-pass=$2 # management user password
-port=$3 # management port
-addr=$4 # base metric address
-type=$5 # data type
-attr=$6 # attribute name
-metr=$7 # metric name
+user=${1}       # management user
+pass=${2}       # management user password
+port=${3}       # management port
+http=${4:-wget} # http agent wget\curl
+addr=${5}       # base metric address
+type=${6}       # data type
+attr=${7}       # attribute name
+metr=${8}       # metric name
 
 case $addr in
     mbean) addr='{"core-service":"platform-mbean"},{"type":"TYPE"}'    ;;
@@ -21,13 +22,7 @@ data="${data//ADDR/$addr}"
 data="${data//TYPE/$type}"
 data="${data//ATTR/$attr}"
 
-# curl version
-#curl -qo- --anyauth --user $user:$pass --header "Content-Type: application/json" \
-#--data "$data" http://localhost:$port/management 2>/dev/null | \
-
-wget -qO- http://$user:$pass@localhost:$port/management \
---header="Content-Type: application/json" --post-data="$data" | \
-
+parser () {
 python -c "
 import sys, json
 metr = '$metr'
@@ -35,3 +30,11 @@ if metr:
     print json.load(sys.stdin)['result'][metr]
 else:
     print json.load(sys.stdin)['result']"
+}
+
+case $http in
+    curl) curl -qo- --anyauth --user $user:$pass --header "Content-Type: application/json" \
+          --data "$data" http://localhost:$port/management 2>/dev/null  | parser;;
+    wget) wget -qO- http://$user:$pass@localhost:$port/management \
+          --header="Content-Type: application/json" --post-data="$data" | parser;;
+esac

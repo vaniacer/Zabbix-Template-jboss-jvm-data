@@ -1,19 +1,14 @@
 #!/bin/bash
 
-user=$1 # management user
-pass=$2 # management user password
-port=$3 # management port
-type=$4 # what to discover(garbage-collector or memory-pool)
+user=${1}       # management user
+pass=${2}       # management user password
+port=${3}       # management port
+http=${4:-wget} # http agent wget\curl
+type=${5}       # what to discover(garbage-collector or memory-pool)
 data='{"operation":"read-resource","address":[{"core-service":"platform-mbean"},{"type":"TYPE"}]}'
 data="${data//TYPE/$type}"
 
-# curl version
-#curl -qo- --anyauth --user $user:$pass --header "Content-Type: application/json" \
-#--data "$data" http://localhost:$port/management 2>/dev/null | \
-
-wget -qO- http://$user:$pass@localhost:$port/management \
---header="Content-Type: application/json" --post-data="$data" | \
-
+parser () {
 python -c "
 import sys, json
 data=[]
@@ -21,3 +16,11 @@ names=json.load(sys.stdin)['result']['name'].keys()
 for name in names:
     data.append({'{#NAME}': name})
 print json.dumps({'data': data})"
+}
+
+case $http in
+    curl) curl -qo- --anyauth --user $user:$pass --header "Content-Type: application/json" \
+          --data "$data" http://localhost:$port/management 2>/dev/null  | parser;;
+    wget) wget -qO- http://$user:$pass@localhost:$port/management \
+          --header="Content-Type: application/json" --post-data="$data" | parser;;
+esac
