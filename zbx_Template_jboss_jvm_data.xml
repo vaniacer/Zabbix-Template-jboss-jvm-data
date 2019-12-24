@@ -2676,7 +2676,7 @@ and&#13;
 ({Template jboss jvm data:DataSourceMax.last(0)} * {$DB_CON_USAGE}  / 100 )</expression>
             <recovery_mode>0</recovery_mode>
             <recovery_expression/>
-            <name>Available DB connections less then {$DB_CON_USAGE}%</name>
+            <name>Available DB connections less than {$DB_CON_USAGE}%</name>
             <correlation_mode>0</correlation_mode>
             <correlation_tag/>
             <url/>
