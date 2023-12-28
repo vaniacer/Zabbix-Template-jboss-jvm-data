@@ -46,6 +46,10 @@ Thread count peak</br>
 
 Thread count total started</br>
 
+<a href="https://t.me/sshtobash"><img src="https://telegram.org/img/website_icon.svg" width="21"></a>
+[![Twitter Follow](https://img.shields.io/twitter/follow/Vaniacer?style=social)](https://twitter.com/Vaniacer)
+[![paypal](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/sshto?locale.x=en_US) <sup>Don't hold yourself, buy me a beer)</sup>
+
 There are two discovery rules for garbage collectors(GC) and memory pools(MP).
 For each discovered GC this items will be created: collection-count and collection-time.
 And for MP: usage committed, usage init, usage max, usage used.
